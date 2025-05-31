@@ -16,6 +16,7 @@ public class PrincipalArmas {
 
         System.out.println("Haz iniciado el 'MENU DE ARMAS DE HALO 5'");
         System.out.println("******************************************");
+        repositorioDeArmas.cargarDatos();
 
         var opcion = 0;
 
@@ -25,10 +26,11 @@ public class PrincipalArmas {
                     ***                   Menu de armas                    ***
                     ==========================================================
                     
-                                1.- Mostrar lista de todas las armas
-                                2.- Mostrar lista de armas por tipo de arma
-                                3.- Mostrar Estadisticas de armas
-                                4.- Regresar al menu anterior
+                                1.- Buscar armas por nombre
+                                2.- Mostrar lista de todas las armas
+                                3.- Mostrar lista de armas por tipo de arma
+                                4.- Mostrar Estadisticas de armas
+                                9.- Regresar al menu anterior
                                 
                     ==========================================================
                     """);
@@ -42,16 +44,23 @@ public class PrincipalArmas {
                 }
                 switch (opcion){
                     case 1:
-                        repositorioDeArmas.listaDeArmasCompleta();
+                        repositorioDeArmas.busquedaPorNombre();
                         System.out.println("Presiona enter para continuar...");
                         scanner.nextLine();
                         break;
                     case 2:
-                        subMenuArmas.menuTipoArma();
+                        repositorioDeArmas.listaDeArmasCompleta();
+                        System.out.println("Presiona enter para continuar...");
+                        scanner.nextLine();
                         break;
                     case 3:
-                        // todo mostrar las estadisticas - cantidad de armas total - cantidad de armas por tipo
+                        subMenuArmas.menuTipoArma();
+                        break;
                     case 4:
+                        // todo mostrar las estadisticas - cantidad de armas total - cantidad de armas por tipo
+                        repositorioDeArmas.estadisticaDeArmas();
+                        break;
+                    case 5:
                         System.out.println("Regresando al menú principal...");
                         break;
                     default:
@@ -61,7 +70,7 @@ public class PrincipalArmas {
                 System.out.println("Entrada inválida. Por favor ingresa un número.");
                 scanner.nextLine();
             }
-        }while (opcion != 4);
+        }while (opcion != 9);
 
     }
 

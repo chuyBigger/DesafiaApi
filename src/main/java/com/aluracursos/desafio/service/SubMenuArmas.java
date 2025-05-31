@@ -11,38 +11,36 @@ public class SubMenuArmas {
     int opcion = 0;
 
 
+    public void menuTipoArma() {
 
-    public void menuTipoArma(){
-
-        repositorioDeArmas.cargarDatos();
         do {
             System.out.println("""
-                ==========================================================
-                ----------------------------------------------------------
-                                Tipos de arma disponibles:
-                ..........................................................
-                                
-                                1.- Grenade
-                                2.- Turret
-                                3.- Vehicle
-                                4.- Standard
-                                5.- Power
-                                6.- Indefinido(Aun no has sido categirizadas en el server)
-                                9.- SALIR
-                                
-                ----------------------------------------------------------
-                ==========================================================
-                """);
+                    ==========================================================
+                    ----------------------------------------------------------
+                                    Tipos de arma disponibles:
+                    ..........................................................
+                    
+                                    1.- Grenade
+                                    2.- Turret
+                                    3.- Vehicle
+                                    4.- Standard
+                                    5.- Power
+                                    6.- Indefinido(Aun no has sido categirizadas en el server)
+                                    9.- SALIR
+                    
+                    ----------------------------------------------------------
+                    ==========================================================
+                    """);
 
             try {
                 String entrada = scanner.nextLine();
                 try {
                     opcion = Integer.parseInt(entrada);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Entrada no válida. Por favor ingresa un número.");
                     opcion = -1;
                 }
-                switch (opcion){
+                switch (opcion) {
                     case 1:
                         repositorioDeArmas.listaArmasGranadas();
                         System.out.println("Presiona enter para continuar...");
@@ -78,13 +76,11 @@ public class SubMenuArmas {
 
                 }
 
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("h");
 
             }
-        }while (opcion != 9);
-
-
+        } while (opcion != 9);
 
 
     }
