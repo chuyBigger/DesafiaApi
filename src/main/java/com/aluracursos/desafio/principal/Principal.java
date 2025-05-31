@@ -10,7 +10,7 @@ public class Principal {
 
     Scanner scanner = new Scanner(System.in);
     public void muestraElMenu(){
-        var eleccion = 0 ;
+        var opcion = 0 ;
 
         do {
             System.out.println("Este servidor muetra informacion de Armas, Vehiculos y Enemigos del Juego 'Halo 5' ");
@@ -23,8 +23,15 @@ public class Principal {
                              9.- SALIR
                 """);
             try {
-                eleccion = scanner.nextInt();
-                switch (eleccion){
+
+                String entrada = scanner.nextLine();
+                try {
+                    opcion = Integer.parseInt(entrada);
+                }catch (NumberFormatException e){
+                    System.out.println("Entrada no válida. Por favor ingresa un número.");
+                    opcion = -1; // fuerza a que el bucle continúe
+                }
+                switch (opcion){
                     case 1:
                         principalArmas.menuArmas();
                         break;
@@ -35,7 +42,8 @@ public class Principal {
                         principalVehiculos.menuVehiculos();
                         break;
                     case 9:
-                        System.out.println("Gracias por usar esta app de Halo5...");
+                        System.out.println("Gracias por usar esta app de Halo 5 ...");
+                        break;
                     default:
                         System.out.println("La opcion no es valida vuelve a intentarlo");
 
@@ -43,7 +51,7 @@ public class Principal {
             }catch (NumberFormatException e){
                 System.out.println(" Entrada no valida vuelve a intentarlo");
             }
-        }while (eleccion != 9);
+        }while (opcion != 9);
 
 
     }

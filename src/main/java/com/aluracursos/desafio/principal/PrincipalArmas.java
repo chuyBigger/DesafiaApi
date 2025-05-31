@@ -1,26 +1,22 @@
 package com.aluracursos.desafio.principal;
 
-import com.aluracursos.desafio.modelos.Armas;
-import com.aluracursos.desafio.service.ConsumoApi;
-import com.aluracursos.desafio.service.ConvierteDatos;
+import com.aluracursos.desafio.service.RepositorioDeArmas;
+import com.aluracursos.desafio.service.SubMenuArmas;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PrincipalArmas {
 
-
-    private ConsumoApi consumoApi = new ConsumoApi();
-    private ConvierteDatos convierteDatos = new ConvierteDatos();
-    private static final String URL_Type = "weapons";
+    RepositorioDeArmas repositorioDeArmas = new RepositorioDeArmas();
+    SubMenuArmas subMenuArmas = new SubMenuArmas();
     Scanner scanner = new Scanner(System.in);
 
     public void menuArmas(){
 
         System.out.println("Haz iniciado el 'MENU DE ARMAS DE HALO 5'");
         System.out.println("******************************************");
-        var json = consumoApi.obtenerDatos(URL_Type);
-        var datosArray = convierteDatos.obtenerLista(json, Armas.class);
+
         var opcion = 0;
 
         do {
@@ -37,13 +33,21 @@ public class PrincipalArmas {
                     ==========================================================
                     """);
             try {
-                opcion = scanner.nextInt();
+                String entrada = scanner.nextLine();
+                try {
+                    opcion = Integer.parseInt(entrada);
+                }catch (NumberFormatException e){
+                    System.out.println("Entrada no válida. Por favor ingresa un número.");
+                    opcion = -1; // fuerza a que el bucle continue
+                }
                 switch (opcion){
                     case 1:
-                        System.out.println(datosArray);
+                        repositorioDeArmas.listaDeArmasCompleta();
+                        System.out.println("Presiona enter para continuar...");
+                        scanner.nextLine();
                         break;
                     case 2:
-                        // todo Mostrar submenu de tipo sde armas y crear solicitudes
+                        subMenuArmas.menuTipoArma();
                         break;
                     case 3:
                         // todo mostrar las estadisticas - cantidad de armas total - cantidad de armas por tipo
