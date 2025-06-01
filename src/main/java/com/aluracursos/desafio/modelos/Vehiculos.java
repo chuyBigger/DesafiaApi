@@ -23,6 +23,6 @@ public record Vehiculos(
                 "\n     Descricion: " + descripcion +
                 "\n     Imagen_Url: " + imagen +
                 "\n     Se puede usar: " + loPuedeUsarElJugador +
-                "\n     Codigo: " + codigo ;
+                "\n     Codigo: " + codigo;
     }
 }

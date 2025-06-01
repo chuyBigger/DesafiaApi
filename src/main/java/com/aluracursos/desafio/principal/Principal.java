@@ -18,10 +18,11 @@ public class Principal {
                 =========================================================================================
                              POR FAVOR INGRESA LA OPCION DESDEDA 
                              1.- MENU ARMAS 
-                             2.- MENU VEHICULOS
-                             3.- MENU ENEMIGOS
+                             2.- MENU ENEMIGOS 
+                             3.- MENU VEHICULOS
                              9.- SALIR
                 """);
+
             try {
 
                 String entrada = scanner.nextLine();

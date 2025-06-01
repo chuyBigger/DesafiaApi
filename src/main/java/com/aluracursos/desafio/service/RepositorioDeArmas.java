@@ -91,7 +91,6 @@ public class RepositorioDeArmas {
 
         );
 
-
         long total = datosArray.size();
         System.out.println("\n Total de armas registradas: " + total);
 
