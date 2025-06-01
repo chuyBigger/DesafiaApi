@@ -60,7 +60,7 @@ public class RepositorioDeEnemigos {
         System.out.println("""
                 =======================================================
                 
-                              Estadísticas de Armas
+                              Estadísticas de Enemigos
                 
                 =======================================================\n
                 """);
@@ -83,7 +83,7 @@ public class RepositorioDeEnemigos {
         );
 
         long total = datosArray.size();
-        System.out.println("\n Total de armas registradas: " + total);
+        System.out.println("\n Total de enemigos registradas: " + total);
 
         System.out.println("\n=======================================================");
 

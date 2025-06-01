@@ -1,9 +1,12 @@
 package com.aluracursos.desafio.service;
 
+import com.aluracursos.desafio.modelos.Enemigos;
 import com.aluracursos.desafio.modelos.Vehiculos;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class RepositorioDeVehiculos {
@@ -11,6 +14,7 @@ public class RepositorioDeVehiculos {
     private ConvierteDatos convierteDatos = new ConvierteDatos();
     private static final String URL_Type = "vehicles";
     private List<Vehiculos> datosArray;
+    Scanner scanner = new Scanner(System.in);
 
     public void cargarDatos() {
         var json = consumoApi.obtenerDatos(URL_Type);
@@ -81,6 +85,31 @@ public class RepositorioDeVehiculos {
         System.out.println("\n Total de vehiculos registrados: " + total);
 
         System.out.println("\n=======================================================");
+
+    }
+    // Buscar de vehiculos por nombre.
+
+    public void busquedaVehiculosPorNombre() {
+        System.out.println("Ingrese el nombre del vehiculo que desea buscar:");
+        var busqueda = scanner.nextLine();
+
+        Optional<Vehiculos> vehiculoExacto = datosArray.stream()
+                .filter(vehiculos -> vehiculos.nombre().toLowerCase().equalsIgnoreCase(busqueda))
+                .findFirst();
+        if (vehiculoExacto.isPresent()) {
+            System.out.println("Vehiculo Encontrado!!");
+            System.out.println(vehiculoExacto.get());
+        } else {
+            List<Vehiculos> coicidenciasParciales = datosArray.stream()
+                    .filter(vehiculos -> vehiculos.nombre().toLowerCase().contains(busqueda.toLowerCase()))
+                    .toList();
+            if (!coicidenciasParciales.isEmpty()) {
+                System.out.println("No se encontraron coicidencias exactas pero se encontraron estos vehiculos que incluyan: " + busqueda + " en su nombre.");
+                coicidenciasParciales.forEach(vehiculos -> System.out.println("_ " + vehiculos.nombre()));
+            } else {
+                System.out.println(" No se encontraron coicidencias es el nombre: " + busqueda);
+            }
+        }
 
     }
 
